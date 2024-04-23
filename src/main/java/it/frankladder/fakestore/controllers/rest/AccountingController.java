@@ -16,6 +16,11 @@ import java.util.List;
 @RestController
 @RequestMapping("/users")
 public class AccountingController {
+    /*
+    quando faremo il front-end potremmo presupporre di fare l'app client in più lingue solitamente c'è un file che contiene
+    una chiave univoca e come valore la parola nelle varie lingue
+     */
+
     @Autowired
     private AccountingService accountingService;
 
@@ -27,6 +32,7 @@ public class AccountingController {
             return new ResponseEntity(added, HttpStatus.OK);
         } catch (MailUserAlreadyExistsException e) {
             return new ResponseEntity<>(new ResponseMessage("ERROR_MAIL_USER_ALREADY_EXISTS"), HttpStatus.BAD_REQUEST);
+            //"ERROR_MAIL_USER_ALREADY_EXISTS" chiave del messaggio nel dizionario delle lingue
         }
     }
 

@@ -32,7 +32,8 @@ public class PurchasingController {
         try {
             return new ResponseEntity<>(purchasingService.addPurchase(purchase), HttpStatus.OK);
         } catch (QuantityProductUnavailableException e) {
-            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Product quantity unavailable!", e); // realmente il messaggio dovrebbe essrere più esplicativo (es. specificare il prodotto di cui non vi è disponibilità)
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Product quantity unavailable!", e);
+            // realmente il messaggio dovrebbe essrere più esplicativo (es. specificare il prodotto di cui non vi è disponibilità)
         }
     }
 
@@ -46,6 +47,7 @@ public class PurchasingController {
     }
 
     @GetMapping("/{user}/{startDate}/{endDate}")
+    //così appare quando il parametro viene inserito tramite un path variable (user in thisC) in un pathassoluto.
     public ResponseEntity getPurchasesInPeriod(@Valid @PathVariable("user") User user, @PathVariable("startDate") @DateTimeFormat(pattern = "dd-MM-yyyy") Date start, @PathVariable("endDate") @DateTimeFormat(pattern = "dd-MM-yyyy") Date end) {
         try {
             List<Purchase> result = purchasingService.getPurchasesByUserInPeriod(user, start, end);

@@ -13,6 +13,13 @@ import java.util.List;
 
 @Service
 public class AccountingService {
+
+    /*
+    I services sono molto più ad alto livello, questo service essendo un e-commerce si occupa di prendere tutti gli utenti
+    grazie alla funzione getAllUser() selavti nella userRepository,
+    registrare l'utente tramite registerUser (quella scritta qui non è una soluzione ottimale vedremo più in là come fare).
+     */
+
     @Autowired
     private UserRepository userRepository;
 
